@@ -17,15 +17,9 @@ face2_gray = cv2.cvtColor(face2, cv2.COLOR_BGR2GRAY)
 imagePts1 = np.load("points_in_face_1.npy")
 imagePts2 = np.load("points_in_face_2.npy")
 
-# affin = findAffineTransform(imagePts1, imagePts2)
-# tran = findProjectiveTransform(imagePts1, imagePts2)
-#
-#
-# ret = mapImage(face1_gray, tran, [face2_gray.shape[0], face2_gray.shape[1]])
 
 
 t_list = np.linspace(0, 1, 130)
-#im_list = createMorphSequence2(face1_gray, imagePts1,  face2_gray, imagePts2)
 im_list = createMorphSequence(face1_gray, imagePts1, face2_gray, imagePts2, t_list, True)
 
 writeMorphingVideo(im_list, 'Example_Video')
