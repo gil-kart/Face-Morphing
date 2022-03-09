@@ -2,13 +2,11 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-
 def writeMorphingVideo(image_list, video_name):
     out = cv2.VideoWriter(video_name + ".mp4", cv2.VideoWriter_fourcc(*'mp4v'), 20.0, image_list[0].shape, 0)
     for im in image_list:
         out.write(im)
     out.release()
-
 
 def createMorphSequence(im1, im1_pts, im2, im2_pts, t_list, transformType):
     if transformType:
@@ -153,7 +151,6 @@ def findAffineTransform(pointsSet1, pointsSet2):
     affine[1, 1] = T[3]
     affine[1, 2] = T[5]
     affine[2, 2] = 1
-
     return affine
 
 
@@ -172,58 +169,6 @@ def getImagePts(im1, im2, varName1, varName2, nPoints):
     imagePts2 = np.append(temp_2, np.ones((nPoints, 1), dtype=np.uint8), axis=1)
     np.save(varName1 + ".npy", imagePts1)
     np.save(varName2 + ".npy", imagePts2)
-
-
-
-
-
-
-
-
-    #  ------------------------------- interpolate - nearest nabore ----------------------------
-    # new_mat = np.round(new_mat)
-    # new_mat[new_mat < 0] = 0
-    #
-    # new_mat_x = new_mat[0]
-    # new_mat_y = new_mat[1]
-    # new_mat_x[new_mat_x >= sizeOutIm[0]] = sizeOutIm[0] - 1
-    # new_mat_y[new_mat_y >= sizeOutIm[1]] = sizeOutIm[1] - 1
-    #
-    # new_mat[0] = new_mat_x
-    # new_mat[1] = new_mat_y
-    #
-    # ret_mat = np.zeros((sizeOutIm[0], sizeOutIm[1]))
-    # z = 0
-    # for i in range(sizeOutIm[0]):
-    #     for j in range(sizeOutIm[1]):
-    #         x, y = new_mat[0, z].astype(int), new_mat[1, z].astype(int)
-    #         ret_mat[i, j] = im[x, y]
-    #         z = z + 1
-    # return np.transpose(ret_mat)
-    # plt.imshow(ret_mat, cmap='gray')
-
-
-
-# -------------------------------- implemeting interpolation with loop ------------------------
-# ------------------------------------------------------------
-
-
-    # z = 0
-    # for i in range(sizeOutIm[0]):
-    #     for j in range(sizeOutIm[1]):
-    #         X, Y = np.round(new_mat[0, z]).astype(np.uint8), np.round(new_mat[1, z]).astype(np.uint8)
-    #         if (X > sizeOutIm[0] - 1 or Y > sizeOutIm[1] - 1 or X < 0 or Y < 0):
-    #             ret_mat[i, j] = 255
-    #         else:
-    #             ret_mat[i, j] = im[X, Y]
-    #         z = z + 1
-    # plt.imshow(ret_mat, cmap='gray')
-    # return ret_mat
-
-
-
-
-
 
 def createMorphSequence2(im1, im1_pts, t_list, transformType):
     ims = []
