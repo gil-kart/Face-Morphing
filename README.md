@@ -3,7 +3,7 @@ so let's take a look at these two images:
 ![](images/image6.jpg)
 ![](images/image5.jpg)
 
-we need to create a video that showes morphing of the first face to the second.
+Given these two pictures of faces, this project creates a sequence of images that shows morphing from one face image to the other.
 
 in order to do that, we first need to choose a certein amount of points on each face so that each point we chose on the first face, will be mapped to the coresponding point on the second face.
 
