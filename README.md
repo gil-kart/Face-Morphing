@@ -3,7 +3,7 @@ so let's take a look at these two images:
 ![](images/image6.jpg)
 ![](images/image5.jpg)
 
-we need to create a video of cross dissolving off the first face to the second.
+we need to create a video that showes morphing of the first face to the second.
 
 in order to do that, we first need to choose a certein amount of points on each face so that each point we chose on the first face, will be mapped to the coresponding point on the second face.
 
