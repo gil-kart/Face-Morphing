@@ -1,43 +1,44 @@
-import cv2.cv2
-import numpy as np
+from cross_disolve_functions import *
 
-from hw2_functions import *
-
-# ----------------------------- question a --------------------------------------
-
-path_image = r'FaceImages\face5.tif'
+path_image = r'imagesAndPoints\face5.tif'
 face1 = cv2.imread(path_image)
 face1_gray = cv2.cvtColor(face1, cv2.COLOR_BGR2GRAY)
 
-path_image = r'FaceImages\face6.tif'
+path_image = r'imagesAndPoints\face6.tif'
 face2 = cv2.imread(path_image)
 face2_gray = cv2.cvtColor(face2, cv2.COLOR_BGR2GRAY)
 
 
-imagePts1 = np.load("points_in_face_1.npy")
-imagePts2 = np.load("points_in_face_2.npy")
+imagePts1 = np.load(r"imagesAndPoints\points_in_face_1.npy")
+imagePts2 = np.load(r"imagesAndPoints\points_in_face_2.npy")
 
+# affin = findAffineTransform(imagePts1, imagePts2)
+# tran = findProjectiveTransform(imagePts1, imagePts2)
+#
+#
+# ret = mapImage(face1_gray, tran, [face2_gray.shape[0], face2_gray.shape[1]])
 
 
 t_list = np.linspace(0, 1, 130)
+#im_list = createMorphSequence2(face1_gray, imagePts1,  face2_gray, imagePts2)
 im_list = createMorphSequence(face1_gray, imagePts1, face2_gray, imagePts2, t_list, True)
 
 writeMorphingVideo(im_list, 'Example_Video')
 
 # --------------------- question B -------------------------
 
-path_image = r'FaceImages\target.tif'
+path_image = r'imagesAndPoints\target.tif'
 target = cv2.imread(path_image)
 target_gray = cv2.cvtColor(target, cv2.COLOR_BGR2GRAY)
 
-path_image = r'FaceImages\sqrtar.tif'
+path_image = r'imagesAndPoints\sqrtar.tif'
 tri = cv2.imread(path_image)
 tri_gray = cv2.cvtColor(tri, cv2.COLOR_BGR2GRAY)
 
 
 
-imagePts1 = np.load("tri_1.npy")
-imagePts2 = np.load("tri_2.npy")
+imagePts1 = np.load(r"imagesAndPoints\tri_1.npy")
+imagePts2 = np.load(r"imagesAndPoints\tri_2.npy")
 
 
 affin = findAffineTransform(imagePts1, imagePts2)
@@ -64,21 +65,21 @@ plt.title("affin")
 plt.subplot(1, 4, 4)
 plt.imshow(tri_gray, cmap='gray')
 plt.title("origin")
-
+plt.show()
 # ----------------------- question C --------------------------------
 # ---------------------------- i ------------------------------------
-path_image = r'FaceImages\face6.tif'
+path_image = r'imagesAndPoints\face6.tif'
 im1_color = cv2.imread(path_image)
 im1 = cv2.cvtColor(im1_color, cv2.COLOR_BGR2GRAY)
 
-path_image = r'FaceImages\face4.tif'
+path_image = r'imagesAndPoints\face4.tif'
 im2_color = cv2.imread(path_image)
 im2 = cv2.cvtColor(im2_color, cv2.COLOR_BGR2GRAY)
 
-im1_pts = np.load("q3_im1_pts.npy")
-im2_pts = np.load("q3_im2_pts.npy")
-im1_pts_4pts = np.load("q3_im1_pts_4pts.npy")
-im2_pts_4pts = np.load("q3_im2_pts_4pts.npy")
+im1_pts = np.load(r"imagesAndPoints\q3_im1_pts.npy")
+im2_pts = np.load(r"imagesAndPoints\q3_im2_pts.npy")
+im1_pts_4pts = np.load(r"imagesAndPoints\q3_im1_pts_4pts.npy")
+im2_pts_4pts = np.load(r"imagesAndPoints\q3_im2_pts_4pts.npy")
 
 t = 0.5
 one_2_two_12pts = findProjectiveTransform(im1_pts, im2_pts)
@@ -109,12 +110,12 @@ plt.subplot(1, 2, 2)
 plt.imshow(nim_12pts, cmap='gray')
 plt.title("12 points")
 
-
+plt.show()
 # # ---------------------------- ii ------------------------------------
 
 
-im1_bad_dis = np.load("points_face_1_bad_dis.npy")
-im2_bad_dis = np.load("points_face_2_bad_dis.npy")
+im1_bad_dis = np.load(r"imagesAndPoints\points_face_1_bad_dis.npy")
+im2_bad_dis = np.load(r"imagesAndPoints\points_face_2_bad_dis.npy")
 
 
 one_2_two_bad_dis = findProjectiveTransform(im1_bad_dis, im2_bad_dis)
@@ -136,5 +137,4 @@ plt.title("points distributed well")
 plt.subplot(1, 2, 2)
 plt.imshow(nim_bad_dis, cmap='gray')
 plt.title("points distributed badly")
-
-
+plt.show()
