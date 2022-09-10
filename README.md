@@ -1,3 +1,4 @@
+
 so let's take a look at these two images:
 
 ![](images/image6.jpg)
@@ -18,4 +19,16 @@ so we choose the eyes, ears, lips and everyting we want to map smoothly.
 afer we chose the right points to map, this is the result of our cross-dissolving:
 
 ![Example_Video_2](https://user-images.githubusercontent.com/73134488/157604234-cbc403de-d7b9-4201-bae8-a7680f14c049.gif)
+
+to run this code localy, after cloning the project, run the commaneds:
+```
+pip install numpy
+pip install opencv-python
+pip install matplotlib
+
+````
+and run the project.
+the points that are marked at the example above will be inserted automatically.
+after running, a new file named ***"Example video"*** will be created and saved at the folder of the project.
+
 
